@@ -3,6 +3,7 @@ import "./CartPage.css";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "./config";
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -15,7 +16,7 @@ const [subtotal, setSubtotal] = useState(0);
  useEffect(() => {
   const fetchCartItems = async () => {
     try {
-      const response = await fetch("http://localhost:9090/api/cart/items", {
+      const response = await fetch("${BASE_URL}/api/cart/items", {
         credentials: "include",
       });
       if (!response.ok) {
@@ -50,7 +51,7 @@ const [subtotal, setSubtotal] = useState(0);
   // Remove item from the cart
   const handleRemoveItem = async (productId) => {
   try {
-    const response = await fetch("http://localhost:9090/api/cart/delete", {
+    const response = await fetch("${BASE_URL}/api/cart/delete", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -75,7 +76,7 @@ const handleQuantityChange = async (productId, newQuantity) => {
       handleRemoveItem(productId);
       return;
     }
-    const response = await fetch("http://localhost:9090/api/cart/update", {
+    const response = await fetch("${BASE_URL}/api/cart/update", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -114,7 +115,7 @@ const handleQuantityChange = async (productId, newQuantity) => {
     };
 
     // Create Razorpay order via backend
-    const response = await fetch("http://localhost:9090/api/payment/create", {
+    const response = await fetch("${BASE_URL}/api/payment/create", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -135,7 +136,7 @@ const handleQuantityChange = async (productId, newQuantity) => {
       handler: async function (response) {
         try {
           // Payment success, verify on backend
-          const verifyResponse = await fetch("http://localhost:9090/api/payment/verify", {
+          const verifyResponse = await fetch("${BASE_URL}/api/payment/verify", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             credentials: "include",
