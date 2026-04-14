@@ -1,0 +1,3 @@
+[build]
+  command = "cd Sales-Savvy && npm install && npm run build"
+  publish = "Sales-Savvy/dist"
