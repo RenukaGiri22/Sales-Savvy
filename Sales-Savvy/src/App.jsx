@@ -4,13 +4,13 @@ import AppRoutes from './Routes';
 import './assets/styles.css';
 
 function App() {
-  // return (
-  //   // <BrowserRouter>
-  //   //   <AppRoutes />
-  //   // </BrowserRouter>
+   return (
+   <BrowserRouter>
+       <AppRoutes />
+  </BrowserRouter>
 
-  // );
-  return <h1>HELLO WORKING</h1>;
+   );
+  
 }
 
 export default App;
